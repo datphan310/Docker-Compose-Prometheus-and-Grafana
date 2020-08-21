@@ -33,6 +33,19 @@ scrape_configs:
     honor_labels: true
     static_configs:
       - targets: ['pushgateway:9091']
+        
+  - job_name: 'claim-service-prometheus'
+    scrape_interval: 10s
+    honor_labels: true
+    metrics_path: '/prometheus-metrics'
+    static_configs:
+      - targets: ['host.docker.internal:5000']
+
+  - job_name: 'claim-service'
+    scrape_interval: 10s
+    honor_labels: true
+    static_configs:
+      - targets: ['host.docker.internal:5000']
 
 
 alerting:
